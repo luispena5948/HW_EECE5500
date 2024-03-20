@@ -40,4 +40,19 @@ constant seven_segment_table: seven_segment_decoder :=(
 	(a => '1', b => '0', c => '0', d => '0', e => '1', f => '1', g => '1')  --F = 15
 
 );
+
+subtype hex_digit is natural range 0 to seven_segment_table'high;
+
+function get_hex_digit (
+	digit: in hex_digit;
+	lamp_mode: in lamp_configuration := default_lamp_config
+) return seven_segment_config;
+
+function lamps_off (
+	lamp_mode: in lamp_configuration := default_lamp_config
+) return seven_segment_config;
+
+
+
+
 	
