@@ -43,16 +43,36 @@ constant seven_segment_table: seven_segment_decoder :=(
 
 subtype hex_digit is natural range 0 to seven_segment_table'high;
 
+
+--function prototype
+--#1
 function get_hex_digit (
 	digit: in hex_digit;
 	lamp_mode: in lamp_configuration := default_lamp_config
 ) return seven_segment_config;
 
+--#2
 function lamps_off (
 	lamp_mode: in lamp_configuration := default_lamp_config
 ) return seven_segment_config;
 
+-- function implementations
+--#1
+function get_hex_digit (
+	digit: 		in hex_digit;
+	lamp_mode:	in lamp_configuration := default_lamp_config
+) return seven_segment_config
+is
+	begin
+		return seven_segment_table(hex_digit);
+end function get_hex_digit;
 
-
-
-	
+--#2
+function lamps_off (
+	lamp_mode:	in lamp_configuration := default_lamp_config
+) return seven_segment_config
+is
+	off: seven_segment_config := (a => '0', b => '0', c => '0', d => '0', e => '0', f => '0', g => '0')
+begin
+	return off;
+end function lamps_off;
